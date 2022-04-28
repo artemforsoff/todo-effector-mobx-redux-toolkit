@@ -1,26 +1,20 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { Routes, Route, Link } from "react-router-dom";
+import { Effector, Mobx, ReduxToolkit } from "pages";
 
-function App() {
+export const App = () => {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <nav style={{ display: "flex", gap: 20, marginBlockEnd: 20 }}>
+        <Link to="/effector">effector</Link>
+        <Link to="/mobx">mobx</Link>
+        <Link to="/redux-toolkit">redux-toolkit</Link>
+      </nav>
+
+      <Routes>
+        <Route path="effector" element={<Effector />} />
+        <Route path="mobx" element={<Mobx />} />
+        <Route path="redux-toolkit" element={<ReduxToolkit />} />
+      </Routes>
     </div>
   );
-}
-
-export default App;
+};
