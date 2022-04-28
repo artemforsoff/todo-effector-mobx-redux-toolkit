@@ -6,9 +6,9 @@ export const Effector = () => {
 
   return (
     <div style={{ display: "flex", gap: 20 }}>
-      <button onClick={decrement}>decrement</button>
+      <button onClick={() => decrement()}>decrement</button>
       <span>effector count: {count}</span>
-      <button onClick={increment}>increment</button>
+      <button onClick={() => increment()}>increment</button>
     </div>
   );
 };
