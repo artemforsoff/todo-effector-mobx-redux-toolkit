@@ -1,14 +1,29 @@
 import { useStore } from "effector-react";
-import { $count, decrement, increment } from "stores/effector";
+import { useEffect } from "react";
+import { $todos, $todosLoaded, getAllTodosFx } from "stores/effector/todo";
 
 export const Effector = () => {
-  const count = useStore($count);
+  const todos = useStore($todos);
+  const todosLoaded = useStore($todosLoaded);
+  const isLoading = useStore(getAllTodosFx.pending);
+
+  useEffect(() => {
+    if (!todosLoaded) {
+      getAllTodosFx();
+    }
+  }, [todosLoaded]);
 
   return (
-    <div style={{ display: "flex", gap: 20 }}>
-      <button onClick={() => decrement()}>decrement</button>
-      <span>effector count: {count}</span>
-      <button onClick={() => increment()}>increment</button>
+    <div>
+      {isLoading && <p>loading...</p>}
+
+      <ul>
+        {todos.map(({ title, completed, id }) => (
+          <li key={id}>
+            {title} - {completed}
+          </li>
+        ))}
+      </ul>
     </div>
   );
 };

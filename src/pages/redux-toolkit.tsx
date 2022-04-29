@@ -1,15 +1,30 @@
+import { useEffect } from "react";
 import { useDispatch, useSelector } from "stores/redux-toolkit";
-import { decrement, increment } from "stores/redux-toolkit/counter";
+import { fetchAllTodos } from "stores/redux-toolkit/todo";
 
 export const ReduxToolkit = () => {
   const dispatch = useDispatch();
-  const count = useSelector((state) => state.counter.value);
+  const todos = useSelector((state) => state.todo.entities);
+  const todosLoaded = useSelector((state) => state.todo.entitiesLoaded);
+  const isLoading = useSelector((state) => state.todo.isLoading);
+
+  useEffect(() => {
+    if (!todosLoaded) {
+      dispatch(fetchAllTodos());
+    }
+  }, [dispatch, todosLoaded]);
 
   return (
-    <div style={{ display: "flex", gap: 20 }}>
-      <button onClick={() => dispatch(decrement())}>decrement</button>
-      <span>redux-toolkit count: {count}</span>
-      <button onClick={() => dispatch(increment())}>increment</button>
+    <div>
+      {isLoading && <p>loading...</p>}
+
+      <ul>
+        {todos.map(({ title, completed, id }) => (
+          <li key={id}>
+            {title} - {completed}
+          </li>
+        ))}
+      </ul>
     </div>
   );
 };

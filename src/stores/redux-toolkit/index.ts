@@ -4,10 +4,10 @@ import {
   useDispatch as useReduxDispatch,
   useSelector as useReduxSelector,
 } from "react-redux";
-import { counterReducer } from "./counter";
+import { todoReducer } from "./todo";
 
 export const store = configureStore({
-  reducer: { counter: counterReducer },
+  reducer: { todo: todoReducer },
 });
 
 export type RootState = ReturnType<typeof store.getState>;

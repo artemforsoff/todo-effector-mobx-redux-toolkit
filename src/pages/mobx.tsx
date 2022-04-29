@@ -1,12 +1,28 @@
 import { observer } from "mobx-react";
-import { counter } from "stores/mobx";
+import { todo } from "stores/mobx";
+import { useEffect } from "react";
+import { autorun } from "mobx";
 
 export const Mobx = observer(() => {
+  useEffect(() => {
+    autorun(() => {
+      if (!todo.entitiesLoaded) {
+        todo.fetchAllTodos();
+      }
+    });
+  }, []);
+
   return (
-    <div style={{ display: "flex", gap: 20 }}>
-      <button onClick={() => counter.decrement()}>decrement</button>
-      <span>mobx count: {counter.count}</span>
-      <button onClick={() => counter.increment()}>increment</button>
+    <div>
+      {todo.isLoading && <p>loading...</p>}
+
+      <ul>
+        {todo.entities.map(({ title, completed, id }) => (
+          <li key={id}>
+            {title} - {completed}
+          </li>
+        ))}
+      </ul>
     </div>
   );
 });
