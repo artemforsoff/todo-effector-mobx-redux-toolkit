@@ -1,13 +1,13 @@
-import { configureStore } from "@reduxjs/toolkit";
+import { configureStore } from '@reduxjs/toolkit';
 import {
-  TypedUseSelectorHook,
-  useDispatch as useReduxDispatch,
-  useSelector as useReduxSelector,
-} from "react-redux";
-import { todoReducer } from "./todo";
+    TypedUseSelectorHook,
+    useDispatch as useReduxDispatch,
+    useSelector as useReduxSelector,
+} from 'react-redux';
+import { todoReducer } from './todo';
 
 export const store = configureStore({
-  reducer: { todo: todoReducer },
+    reducer: { todo: todoReducer },
 });
 
 export type RootState = ReturnType<typeof store.getState>;

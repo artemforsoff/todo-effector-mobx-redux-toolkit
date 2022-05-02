@@ -1,1 +1,1 @@
-export { todo } from "./todo";
+export { todoStore } from './todo';
