@@ -9,15 +9,12 @@ export const styles = css`
         list-style: none;
     }
 
-    .todo {
-        display: grid;
-        grid-template-columns: min-content 1fr min-content;
-        align-items: center;
-        gap: 20px;
-        padding: 25px 20px;
+    .todo:not(:last-child) {
+        border-block-end: 2px solid var(--light-grey-color);
+    }
 
-        &:not(:last-child) {
-            border-block-end: 2px solid rgba(0, 0, 0, 0.1);
-        }
+    p {
+        padding: 20px;
+        font-size: 20px;
     }
 `;

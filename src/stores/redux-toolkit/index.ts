@@ -8,6 +8,10 @@ import { todoReducer } from './todo';
 
 export const store = configureStore({
     reducer: { todo: todoReducer },
+    middleware: (getDefaultMiddleware) =>
+        getDefaultMiddleware({
+            serializableCheck: false,
+        }),
 });
 
 export type RootState = ReturnType<typeof store.getState>;

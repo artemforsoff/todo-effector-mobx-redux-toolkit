@@ -6,7 +6,7 @@ const axios = axiosFactory.create({
 });
 
 axios.interceptors.request.use(async (config) => {
-    await sleep(1000);
+    await sleep(500);
     return config;
 });
 

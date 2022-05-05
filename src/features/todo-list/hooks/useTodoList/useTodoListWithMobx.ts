@@ -1,9 +1,9 @@
 import { autorun } from 'mobx';
 import { useEffect } from 'react';
 import { todoStore } from 'stores/mobx';
-import { UseTodoList } from './types';
+import { UseTodoListResponse } from './types';
 
-export const useTodoListWithMobx = (): UseTodoList => {
+export const useTodoListWithMobx = (): UseTodoListResponse => {
     useEffect(() => {
         autorun(() => {
             if (!todoStore.entitiesLoaded) {
@@ -14,6 +14,5 @@ export const useTodoListWithMobx = (): UseTodoList => {
 
     return {
         todos: todoStore.entities,
-        isLoading: todoStore.isLoading,
     };
 };

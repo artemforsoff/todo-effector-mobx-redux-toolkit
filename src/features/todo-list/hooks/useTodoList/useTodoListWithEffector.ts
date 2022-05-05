@@ -1,12 +1,11 @@
 import { useStore } from 'effector-react';
 import { useEffect } from 'react';
-import { $isLoading, $todos, $todosLoaded, getAllTodosFx } from 'stores/effector/todo';
-import { UseTodoList } from './types';
+import { $todos, $todosLoaded, getAllTodosFx } from 'stores/effector/todo';
+import { UseTodoListResponse } from './types';
 
-export const useTodoListWithEffector = (): UseTodoList => {
+export const useTodoListWithEffector = (): UseTodoListResponse => {
     const todos = useStore($todos);
     const todosLoaded = useStore($todosLoaded);
-    const isLoading = useStore($isLoading);
 
     useEffect(() => {
         if (!todosLoaded) {
@@ -14,5 +13,5 @@ export const useTodoListWithEffector = (): UseTodoList => {
         }
     }, [todosLoaded]);
 
-    return { todos, isLoading };
+    return { todos };
 };

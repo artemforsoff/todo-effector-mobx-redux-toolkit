@@ -10,7 +10,7 @@ const createTodo = (todo: Omit<app.Todo, 'id'>) => {
 };
 
 const updateTodo = (todo: PartialExcept<app.Todo, 'id'>) => {
-    return axios.put('todos', todo);
+    return axios.put(`todos/${todo.id}`, todo);
 };
 
 const deleteTodo = (id: app.Todo['id']) => axios.delete(`todos/${id}`);

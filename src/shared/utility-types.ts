@@ -6,3 +6,5 @@ export type PartialExcept<Type, Keys extends keyof Type> = Partial<Type> & Pick<
 export type ComponentPropsWithClassName = {
     className?: string;
 };
+
+export type Nullable<T> = T | null;

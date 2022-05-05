@@ -1,30 +1,28 @@
+import { observer } from 'mobx-react';
 import { ComponentPropsWithClassName } from 'shared/utility-types';
 import styled from 'styled-components';
 import { useTodoList } from '../hooks/useTodoList';
 import { styles } from './styles';
+import { Todo } from 'features';
 
-export const TodoList = styled(({ className }: ComponentPropsWithClassName) => {
-    const { todos } = useTodoList();
+export const TodoList = styled(
+    observer(({ className }: ComponentPropsWithClassName) => {
+        const { todos } = useTodoList();
 
-    return (
-        <div className={className}>
-            {Boolean(todos.length) ? (
-                <ul>
-                    {todos.map(({ id, completed, title }) => (
-                        <li key={id} className="todo">
-                            <input type="checkbox" checked={completed} />
-
-                            <input type="text" disabled value={title} />
-
-                            <button>delete</button>
-                        </li>
-                    ))}
-                </ul>
-            ) : (
-                <p>Todo list is empty</p>
-            )}
-        </div>
-    );
-})`
+        return (
+            <div className={className}>
+                {Boolean(todos.length) ? (
+                    <ul>
+                        {todos.map((todo) => (
+                            <Todo key={todo.id} todo={todo} className="todo" />
+                        ))}
+                    </ul>
+                ) : (
+                    <p>Todo list is empty</p>
+                )}
+            </div>
+        );
+    })
+)`
     ${styles}
 `;

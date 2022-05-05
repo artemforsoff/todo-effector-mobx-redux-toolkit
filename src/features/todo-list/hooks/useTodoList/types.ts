@@ -1,4 +1,3 @@
-export type UseTodoList = {
+export type UseTodoListResponse = {
     todos: app.Todo[];
-    isLoading: boolean;
 };

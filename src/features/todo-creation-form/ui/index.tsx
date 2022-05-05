@@ -11,7 +11,7 @@ export const TodoCreationForm = styled(({ className }: ComponentPropsWithClassNa
 
     return (
         <form className={className} onSubmit={handleSubmit}>
-            <input {...register('title', { required: true })} />
+            <input {...register('title', { required: true })} placeholder="Enter title" />
         </form>
     );
 })`
