@@ -18,7 +18,7 @@ export const TodoList = styled(
                         ))}
                     </ul>
                 ) : (
-                    <p>Todo list is empty</p>
+                    <p className="message-if-list-is-empty">Todo list is empty</p>
                 )}
             </div>
         );

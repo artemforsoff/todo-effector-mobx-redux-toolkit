@@ -1,25 +1,45 @@
 import { observer } from 'mobx-react';
-import { Checkbox } from 'shared/ui';
-import { ComponentPropsWithClassName } from 'shared/utility-types';
+import { Checkbox, ClickOutside, Input } from 'shared/ui';
+import { TrashIcon } from 'shared/ui/icons/trash';
 import styled from 'styled-components';
 import { useTodo } from '../hooks/useTodo';
 import { styles } from './styles';
-
-type TodoProps = ComponentPropsWithClassName & { todo: app.Todo };
+import { TodoProps } from './types';
 
 export const Todo = styled(
     observer((props: TodoProps) => {
         const { todo, className } = props;
 
-        const { handleChangeСompleted, handleDelete } = useTodo(todo);
+        const { form: f, isOpenForm, handleChangeСompleted, handleDelete, setIsOpenForm } = useTodo(todo);
+
+        const closeForm = () => setIsOpenForm(false);
 
         return (
             <li className={className}>
-                <Checkbox checked={todo.completed} onChange={handleChangeСompleted} />
+                <Checkbox
+                    checked={todo.completed}
+                    onChange={({ target: { checked } }) => handleChangeСompleted(checked)}
+                />
 
-                <input type="text" disabled value={todo.title} />
+                {isOpenForm ? (
+                    <ClickOutside onClickOutside={closeForm}>
+                        <form onSubmit={f.handleSubmit} className="form-update-title">
+                            <Input {...f.register('title', { required: true })} onBlur={closeForm} />
+                        </form>
+                    </ClickOutside>
+                ) : (
+                    <p className="title" onDoubleClick={() => setIsOpenForm(true)}>
+                        {todo.title}
+                    </p>
+                )}
 
-                <button onClick={handleDelete}>delete</button>
+                <button
+                    onClick={handleDelete}
+                    className="btn-delete-todo"
+                    aria-label={`Delete todo with title ${todo.title}`}
+                >
+                    <TrashIcon aria-hidden="true" />
+                </button>
             </li>
         );
     })

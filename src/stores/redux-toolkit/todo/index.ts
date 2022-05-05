@@ -15,6 +15,8 @@ const initialState: TodoState = {
 
 export const fetchAllTodos = createAsyncThunk('todo/fetchAllTodos', todoApi.getAllTodos);
 export const fetchCreateTodo = createAsyncThunk('todo/fetchCreateTodo', todoApi.createTodo);
+export const fetchUpdateTodo = createAsyncThunk('todo/fetchUpdateTodo', todoApi.updateTodo);
+export const fetchDeleteTodo = createAsyncThunk('todo/fetchDeleteTodo', todoApi.deleteTodo);
 
 export const todoSlice = createSlice({
     name: 'todo',
@@ -28,6 +30,19 @@ export const todoSlice = createSlice({
             })
             .addCase(fetchCreateTodo.fulfilled, (state, { payload: { data } }) => {
                 state.entities.unshift(data);
+            })
+            .addCase(fetchUpdateTodo.fulfilled, (state, { payload: { data } }) => {
+                state.entities = state.entities.map((todo) => {
+                    if (todo.id === data.id) {
+                        return data;
+                    }
+                    return todo;
+                });
+            })
+            .addCase(fetchDeleteTodo.fulfilled, (state, { payload: { data } }) => {
+                state.entities = state.entities.filter((todo) => {
+                    return todo.id !== data;
+                });
             })
             .addMatcher(
                 (action) => action.type.endsWith('/pending'),

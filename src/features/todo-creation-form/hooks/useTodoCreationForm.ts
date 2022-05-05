@@ -38,5 +38,5 @@ export const useTodoCreationForm = () => {
         form.reset();
     });
 
-    return { form, handleSubmit };
+    return { form: { ...form, handleSubmit } };
 };

@@ -16,5 +16,5 @@ export const App = styled(({ className }: ComponentPropsWithClassName) => (
     gap: 50px;
     position: relative;
     z-index: 1;
-    padding-block-start: 100px;
+    padding-block: 100px;
 `;

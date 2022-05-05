@@ -4,14 +4,11 @@ import { useTodoCreationForm } from '../hooks/useTodoCreationForm';
 import { styles } from './styles';
 
 export const TodoCreationForm = styled(({ className }: ComponentPropsWithClassName) => {
-    const {
-        form: { register },
-        handleSubmit,
-    } = useTodoCreationForm();
+    const { form: f } = useTodoCreationForm();
 
     return (
-        <form className={className} onSubmit={handleSubmit}>
-            <input {...register('title', { required: true })} placeholder="Enter title" />
+        <form className={className} onSubmit={f.handleSubmit}>
+            <input {...f.register('title', { required: true })} placeholder="Enter title" />
         </form>
     );
 })`

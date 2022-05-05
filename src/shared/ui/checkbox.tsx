@@ -1,11 +1,10 @@
 import { nanoid } from 'nanoid';
 import { InputHTMLAttributes } from 'react';
-import { DetailedHTMLProps, PropsWithChildren } from 'react';
-import { ComponentPropsWithClassName } from 'shared/utility-types';
 import styled, { css } from 'styled-components';
 
-type CheckboxProps = PropsWithChildren<ComponentPropsWithClassName> &
-    DetailedHTMLProps<InputHTMLAttributes<HTMLInputElement>, HTMLInputElement>;
+type CheckboxProps = React.PropsWithChildren<
+    React.DetailedHTMLProps<InputHTMLAttributes<HTMLInputElement>, HTMLInputElement>
+>;
 
 const styles = css<CheckboxProps>`
     font-size: 20px;
@@ -52,7 +51,7 @@ const styles = css<CheckboxProps>`
     }
 
     input:checked + label > span {
-        border: 0.5em solid #5758bb;
+        border: 0.5em solid #54a0ff;
         animation: shrink-bounce 100ms cubic-bezier(0.4, 0, 0.23, 1);
     }
 

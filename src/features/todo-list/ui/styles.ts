@@ -13,7 +13,7 @@ export const styles = css`
         border-block-end: 2px solid var(--light-grey-color);
     }
 
-    p {
+    .message-if-list-is-empty {
         padding: 20px;
         font-size: 20px;
     }
