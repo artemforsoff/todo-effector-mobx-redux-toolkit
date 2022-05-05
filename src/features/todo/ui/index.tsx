@@ -14,6 +14,11 @@ export const Todo = styled(
 
         const closeForm = () => setIsOpenForm(false);
 
+        const handleBlur = () => {
+            f.setValue('title', todo.title);
+            closeForm();
+        };
+
         return (
             <li className={className}>
                 <Checkbox
@@ -22,9 +27,13 @@ export const Todo = styled(
                 />
 
                 {isOpenForm ? (
-                    <ClickOutside onClickOutside={closeForm}>
+                    <ClickOutside onClickOutside={handleBlur}>
                         <form onSubmit={f.handleSubmit} className="form-update-title">
-                            <Input {...f.register('title', { required: true })} onBlur={closeForm} />
+                            <Input
+                                {...f.register('title', { required: true })}
+                                hasError={Boolean(f.formState.errors.title)}
+                                onBlur={handleBlur}
+                            />
                         </form>
                     </ClickOutside>
                 ) : (

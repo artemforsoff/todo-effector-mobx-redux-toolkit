@@ -1,9 +1,11 @@
 import { forwardRef } from 'react';
 import styled, { css } from 'styled-components';
 
-type InputProps = React.DetailedHTMLProps<React.InputHTMLAttributes<HTMLInputElement>, HTMLInputElement>;
+type InputProps = React.DetailedHTMLProps<React.InputHTMLAttributes<HTMLInputElement>, HTMLInputElement> & {
+    hasError?: boolean;
+};
 
-const styles = css`
+const styles = css<InputProps>`
     border: 2px solid var(--light-grey-color);
     border-radius: 2px;
     transition: all 250ms cubic-bezier(0.4, 0, 0.23, 1);
@@ -22,11 +24,18 @@ const styles = css`
     &::placeholder {
         color: var(--light-grey-color);
     }
+
+    ${({ hasError }) =>
+        hasError &&
+        css`
+            border-color: var(--error-color) !important;
+        `}
 `;
 
 export const Input = styled(
     forwardRef<HTMLInputElement, InputProps>((props, ref) => {
-        return <input {...props} ref={ref} />;
+        const { hasError: _, ...otherProps } = props;
+        return <input {...otherProps} ref={ref} />;
     })
 )`
     ${styles}

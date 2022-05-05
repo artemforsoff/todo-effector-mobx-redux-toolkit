@@ -2,6 +2,10 @@
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+## Hosting
+
+This application hosted [here](https://artemforsoff.github.io/todo-effector-mobx-redux-toolkit/build/).
+
 ## Available Scripts
 
 In the project directory, you can run:

@@ -14,7 +14,8 @@ export const styles = css`
     }
 
     .message-if-list-is-empty {
-        padding: 20px;
+        padding: 25px 20px;
         font-size: 20px;
+        line-height: 32px;
     }
 `;

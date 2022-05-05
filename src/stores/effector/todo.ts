@@ -32,8 +32,8 @@ $todos
             return todo;
         });
     })
-    .on(deleteTodoFx.done, (todos, { params: deletedTodoId }) => {
-        return todos.filter((todo) => todo.id !== deletedTodoId);
+    .on(deleteTodoFx.done, (todos, { params }) => {
+        return todos.filter((todo) => todo.id !== params);
     });
 
 $todosLoaded.on(getAllTodosFx.done, () => true);

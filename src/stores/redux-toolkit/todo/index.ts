@@ -39,9 +39,9 @@ export const todoSlice = createSlice({
                     return todo;
                 });
             })
-            .addCase(fetchDeleteTodo.fulfilled, (state, { payload: { data } }) => {
+            .addCase(fetchDeleteTodo.fulfilled, (state, { meta: { arg } }) => {
                 state.entities = state.entities.filter((todo) => {
-                    return todo.id !== data;
+                    return todo.id !== arg;
                 });
             })
             .addMatcher(
