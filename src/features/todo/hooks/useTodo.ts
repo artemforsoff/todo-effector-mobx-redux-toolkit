@@ -1,16 +1,15 @@
 import { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
-import { ACTIVE_STORE_MANAGER } from 'shared/constants';
+import { ACTIVE_STORE_MANAGER, StoreManager } from 'shared/constants';
 import { UseTodo } from './types';
 import { useTodoWithEffector } from './useTodoWithEffector';
 import { useTodoWithMobx } from './useTodoWithMobx';
-// import { useTodoListWithReduxToolkit } from './useTodoListWithReduxToolkit';
+import { useTodoWithReduxToolkit } from './useTodoWithReduxToolkit';
 
-// const hooks: Record<typeof ACTIVE_STORE_MANAGER, () => UseTodo> = {
-const hooks: Record<string, UseTodo> = {
+const hooks: Record<StoreManager, UseTodo> = {
     effector: useTodoWithEffector,
     mobx: useTodoWithMobx,
-    // 'redux-toolkit': useTodoWithReduxToolkit,
+    'redux-toolkit': useTodoWithReduxToolkit,
 };
 
 export const useTodo = (todo: app.Todo) => {
