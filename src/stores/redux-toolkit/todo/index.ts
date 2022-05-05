@@ -1,16 +1,20 @@
-import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
+import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { todoApi } from 'shared/api';
+import { Filter } from 'shared/constants';
+import { RootState } from '..';
 
 export interface TodoState {
     entities: app.Todo[];
     entitiesLoaded: boolean;
     isLoading: boolean;
+    filter: Filter;
 }
 
 const initialState: TodoState = {
     entities: [],
     entitiesLoaded: false,
     isLoading: false,
+    filter: Filter.all,
 };
 
 export const fetchAllTodos = createAsyncThunk('todo/fetchAllTodos', todoApi.getAllTodos);
@@ -21,7 +25,14 @@ export const fetchDeleteTodo = createAsyncThunk('todo/fetchDeleteTodo', todoApi.
 export const todoSlice = createSlice({
     name: 'todo',
     initialState,
-    reducers: {},
+    reducers: {
+        filterBy: (state, { payload }: PayloadAction<Filter>) => {
+            state.filter = payload;
+        },
+        clearAllCompleted: (state) => {
+            state.entities = state.entities.filter(({ completed }) => !completed);
+        },
+    },
     extraReducers: (builder) => {
         builder
             .addCase(fetchAllTodos.fulfilled, (state, { payload: { data } }) => {
@@ -58,5 +69,15 @@ export const todoSlice = createSlice({
             );
     },
 });
+
+export const filteredTodosSelector = (state: RootState) => {
+    if (state.todo.filter === Filter.all) return state.todo.entities;
+
+    return state.todo.entities.filter(({ completed }) => {
+        return state.todo.filter === Filter.active ? completed : !completed;
+    });
+};
+
+export const { clearAllCompleted, filterBy } = todoSlice.actions;
 
 export const todoReducer = todoSlice.reducer;

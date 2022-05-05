@@ -13,6 +13,6 @@ export const useTodoListWithMobx = (): UseTodoListResponse => {
     }, []);
 
     return {
-        todos: todoStore.entities,
+        todos: todoStore.filteredTodos,
     };
 };

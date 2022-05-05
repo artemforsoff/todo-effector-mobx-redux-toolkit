@@ -1,11 +1,11 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'stores/redux-toolkit';
-import { fetchAllTodos } from 'stores/redux-toolkit/todo';
+import { fetchAllTodos, filteredTodosSelector } from 'stores/redux-toolkit/todo';
 import { UseTodoListResponse } from './types';
 
 export const useTodoListWithReduxToolkit = (): UseTodoListResponse => {
     const dispatch = useDispatch();
-    const todos = useSelector((state) => state.todo.entities);
+    const todos = useSelector(filteredTodosSelector);
     const todosLoaded = useSelector((state) => state.todo.entitiesLoaded);
 
     useEffect(() => {

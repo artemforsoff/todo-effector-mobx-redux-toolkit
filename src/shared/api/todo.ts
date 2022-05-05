@@ -1,7 +1,7 @@
 import { axios } from 'shared/lib/axios';
 import { PartialExcept } from 'shared/utility-types';
 
-const getAllTodos = async () => axios.get<app.Todo[]>('todos', { params: { _limit: 10 } });
+const getAllTodos = async () => axios.get<app.Todo[]>('todos', { params: { _limit: 5 } });
 
 const getTodo = (id: app.Todo['id']) => axios.get<app.Todo>(`todos/${id}`);
 

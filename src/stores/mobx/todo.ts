@@ -1,10 +1,12 @@
 import { makeAutoObservable } from 'mobx';
 import { todoApi } from 'shared/api';
+import { Filter } from 'shared/constants';
 
 class Todo {
     entities: app.Todo[] = [];
     entitiesLoaded = false;
     isLoading = false;
+    filter = Filter.all;
 
     constructor() {
         makeAutoObservable(this);
@@ -64,6 +66,22 @@ class Todo {
             this.isLoading = false;
         }
     };
+
+    clearAllCompleted = () => {
+        this.entities = this.entities.filter(({ completed }) => !completed);
+    };
+
+    filterBy = (filter: Filter) => {
+        this.filter = filter;
+    };
+
+    get filteredTodos() {
+        if (this.filter === Filter.all) return this.entities;
+
+        return this.entities.filter(({ completed }) => {
+            return this.filter === Filter.active ? completed : !completed;
+        });
+    }
 }
 
 export const todoStore = new Todo();

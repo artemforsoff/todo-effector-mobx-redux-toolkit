@@ -1,3 +1,4 @@
+import classNames from 'classnames';
 import { nanoid } from 'nanoid';
 import { InputHTMLAttributes } from 'react';
 import styled, { css } from 'styled-components';
@@ -9,35 +10,24 @@ type CheckboxProps = React.PropsWithChildren<
 const styles = css<CheckboxProps>`
     font-size: 20px;
 
-    input {
-        height: 0;
-        width: 0;
-        clip: rect(0 0 0 0);
-        overflow: hidden;
-        position: absolute;
-        margin: -1px;
-        border: 0;
-        padding: 0;
+    input + label {
+        position: relative;
+        display: flex;
+        align-items: center;
+        transition: color 250ms cubic-bezier(0.4, 0, 0.23, 1);
 
-        & + label {
-            position: relative;
+        & > span {
             display: flex;
+            justify-content: center;
             align-items: center;
-            transition: color 250ms cubic-bezier(0.4, 0, 0.23, 1);
-
-            & > span {
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                margin-inline-end: ${({ children }) => (children ? '1em' : 0)};
-                width: 1em;
-                height: 1em;
-                background: transparent;
-                border: 2px solid var(--light-grey-color);
-                border-radius: 2px;
-                cursor: pointer;
-                transition: all 250ms cubic-bezier(0.4, 0, 0.23, 1);
-            }
+            margin-inline-end: ${({ children }) => (children ? '1em' : 0)};
+            width: 1em;
+            height: 1em;
+            background: transparent;
+            border: 2px solid var(--light-grey-color);
+            border-radius: 2px;
+            cursor: pointer;
+            transition: all 250ms cubic-bezier(0.4, 0, 0.23, 1);
         }
     }
 
@@ -102,7 +92,12 @@ export const Checkbox = styled((props: CheckboxProps) => {
 
     return (
         <div className={className}>
-            <input id={id} type="checkbox" {...otherProps} />
+            <input
+                id={id}
+                type="checkbox"
+                {...otherProps}
+                className={classNames('visibility-hidden', className)}
+            />
             <label htmlFor={id}>
                 <span></span>
 
