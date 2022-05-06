@@ -7,6 +7,11 @@ export const styles = css`
     display: flex;
     text-transform: uppercase;
 
+    @media screen and (max-width: 480px) {
+        font-size: 45px;
+        letter-spacing: calc(45px / 3);
+    }
+
     @keyframes blink {
         50% {
             color: transparent;

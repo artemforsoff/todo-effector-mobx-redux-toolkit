@@ -22,6 +22,11 @@ export const App = styled(({ className }: ComponentPropsWithClassName) => (
     z-index: 1;
     padding-block: 100px;
 
+    @media screen and (max-width: 480px) {
+        gap: 30px;
+        padding-block: 50px;
+    }
+
     main {
         box-shadow: 0px 0px 26px 6px rgba(0, 0, 0, 0.1);
 
