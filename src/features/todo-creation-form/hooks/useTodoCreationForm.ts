@@ -1,8 +1,9 @@
 import { useForm } from 'react-hook-form';
 import { todoApi } from 'shared/api';
-import { ACTIVE_STORE_MANAGER } from 'shared/constants';
+import { ACTIVE_STORE_MANAGER, StoreManager } from 'shared/constants';
 import { createTodoFx } from 'stores/effector/todo';
 import { todoStore } from 'stores/mobx/todo';
+import { recoilStore } from 'stores/recoil';
 import { useDispatch } from 'stores/redux-toolkit';
 import { fetchCreateTodo } from 'stores/redux-toolkit/todo';
 
@@ -14,6 +15,8 @@ export const useTodoCreationForm = () => {
     const dispatch = useDispatch();
     const form = useForm<TodoCreationFormValues>();
 
+    const actions = recoilStore.todo.useTodoActions();
+
     const handleSubmit = form.handleSubmit(async ({ title }) => {
         const todo: Parameters<typeof todoApi.createTodo>['0'] = {
             completed: false,
@@ -22,14 +25,17 @@ export const useTodoCreationForm = () => {
         };
 
         switch (ACTIVE_STORE_MANAGER) {
-            case 'effector':
+            case StoreManager.effector:
                 await createTodoFx(todo);
                 break;
-            case 'mobx':
+            case StoreManager.mobx:
                 await todoStore.fetchCreateTodo(todo);
                 break;
-            case 'redux-toolkit':
+            case StoreManager.reduxToolkit:
                 await dispatch(fetchCreateTodo(todo));
+                break;
+            case StoreManager.recoil:
+                await actions.fetchCreateTodo(todo);
                 break;
             default:
                 console.log('Unknown store manager');

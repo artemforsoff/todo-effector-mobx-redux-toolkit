@@ -11,7 +11,7 @@ export const App = styled(({ className }: ComponentPropsWithClassName) => (
 
         <main>
             <TodoFilters className="todo-filters" />
-            
+
             <TodoList className="todo-list" />
         </main>
     </Container>
@@ -29,6 +29,7 @@ export const App = styled(({ className }: ComponentPropsWithClassName) => (
 
     main {
         box-shadow: 0px 0px 26px 6px rgba(0, 0, 0, 0.1);
+        border-radius: 10px;
 
         .todo-filters {
             border-top-left-radius: 10px;

@@ -5,11 +5,13 @@ import { UseTodoFiltersResponse } from './types';
 import { useTodoFiltersWithEffector } from './useTodoFiltersWithEffector';
 import { useTodoFiltersWithMobx } from './useTodoFiltersWithMobx';
 import { useTodoFiltersWithReduxToolkit } from './useTodoFiltersWithReduxToolkit';
+import { useTodoFiltersWithRecoil } from './useTodoFiltersWithRecoil';
 
 const hooks: Record<StoreManager, () => UseTodoFiltersResponse> = {
     effector: useTodoFiltersWithEffector,
     mobx: useTodoFiltersWithMobx,
     'redux-toolkit': useTodoFiltersWithReduxToolkit,
+    recoil: useTodoFiltersWithRecoil,
 };
 
 export const useTodoFilters = () => {

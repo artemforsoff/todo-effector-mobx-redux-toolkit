@@ -10,6 +10,7 @@ export enum StoreManager {
     effector = 'effector',
     mobx = 'mobx',
     reduxToolkit = 'redux-toolkit',
+    recoil = 'recoil',
 }
 
 const searchParamsStoreManager = new URLSearchParams(window.location.search).get(

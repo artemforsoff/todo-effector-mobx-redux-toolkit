@@ -5,11 +5,13 @@ import { UseTodo } from './types';
 import { useTodoWithEffector } from './useTodoWithEffector';
 import { useTodoWithMobx } from './useTodoWithMobx';
 import { useTodoWithReduxToolkit } from './useTodoWithReduxToolkit';
+import { useTodoWithRecoil } from './useTodoWithRecoil';
 
 const hooks: Record<StoreManager, UseTodo> = {
     effector: useTodoWithEffector,
     mobx: useTodoWithMobx,
     'redux-toolkit': useTodoWithReduxToolkit,
+    recoil: useTodoWithRecoil,
 };
 
 export const useTodo = (todo: app.Todo) => {
