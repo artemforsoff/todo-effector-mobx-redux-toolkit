@@ -1,3 +1,3 @@
-import { todo } from './todo';
+import { todoStore } from './todo';
 
-export const recoilStore = { todo };
+export const recoilStore = { todo: todoStore };

@@ -6,7 +6,7 @@ import { UseTodoListResponse } from './types';
 
 export const useTodoListWithRecoil = (): UseTodoListResponse => {
     const [, setTodos] = useRecoilState(recoilStore.todo.atoms.todosState);
-    const filteredTodosState = useRecoilValue(recoilStore.todo.atoms.filteredTodosState);
+    const filteredTodosState = useRecoilValue(recoilStore.todo.selectors.filteredTodosState);
     const [todosLoaded, setTodosLoaded] = useRecoilState(recoilStore.todo.atoms.todosLoadedState);
     const [, setIsLoading] = useRecoilState(recoilStore.todo.atoms.isLoadingState);
 
