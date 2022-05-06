@@ -1,6 +1,6 @@
 {
-  "short_name": "todo-effector-mobx-redux-toolkit",
-  "name": "todo-effector-mobx-redux-toolkit",
+  "short_name": "todo-effector-mobx-redux-toolkit-recoil",
+  "name": "todo-effector-mobx-redux-toolkit-recoil",
   "icons": [
     {
       "src": "favicon.ico",
