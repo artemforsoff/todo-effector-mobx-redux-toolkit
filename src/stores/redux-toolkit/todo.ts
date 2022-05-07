@@ -1,7 +1,7 @@
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { todoApi } from 'shared/api';
 import { Filter } from 'shared/constants';
-import { RootState } from '..';
+import { RootState } from '.';
 
 export interface TodoState {
     entities: app.Todo[];
@@ -74,7 +74,7 @@ export const filteredTodosSelector = (state: RootState) => {
     if (state.todo.filter === Filter.all) return state.todo.entities;
 
     return state.todo.entities.filter(({ completed }) => {
-        return state.todo.filter === Filter.active ? completed : !completed;
+        return state.todo.filter === Filter.active ? !completed : completed;
     });
 };
 

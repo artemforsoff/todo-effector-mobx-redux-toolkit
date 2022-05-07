@@ -1,4 +1,4 @@
-import { atom, selector, useRecoilState } from 'recoil';
+import { atom, selector, useRecoilState, useSetRecoilState } from 'recoil';
 import { Filter } from 'shared/constants';
 import { todoApi } from 'shared/api';
 
@@ -31,16 +31,16 @@ export const filteredTodosState = selector({
         if (filter === Filter.all) return todos;
 
         return todos.filter(({ completed }) => {
-            return filter === Filter.active ? completed : !completed;
+            return filter === Filter.active ? !completed : completed;
         });
     },
 });
 
 export const useTodoActions = () => {
-    const [, setIsLoading] = useRecoilState(isLoadingState);
+    const setIsLoading = useSetRecoilState(isLoadingState);
     const [todos, setTodos] = useRecoilState(todosState);
 
-    const [, setFilter] = useRecoilState(filterState);
+    const setFilter = useSetRecoilState(filterState);
 
     const filterBy = (filter: Filter) => setFilter(filter);
 

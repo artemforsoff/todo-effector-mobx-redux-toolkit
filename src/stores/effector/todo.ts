@@ -51,7 +51,7 @@ export const $filteredTodos = combine($todos, $filter, (todos, filter) => {
     if (filter === Filter.all) return todos;
 
     return todos.filter(({ completed }) => {
-        return filter === Filter.active ? completed : !completed;
+        return filter === Filter.active ? !completed : completed;
     });
 });
 

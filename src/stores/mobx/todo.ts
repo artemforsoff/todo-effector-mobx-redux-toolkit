@@ -79,7 +79,7 @@ class Todo {
         if (this.filter === Filter.all) return this.entities;
 
         return this.entities.filter(({ completed }) => {
-            return this.filter === Filter.active ? completed : !completed;
+            return this.filter === Filter.active ? !completed : completed;
         });
     }
 }
