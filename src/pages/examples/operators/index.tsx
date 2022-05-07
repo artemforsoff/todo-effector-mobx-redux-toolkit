@@ -6,7 +6,7 @@ import styled from 'styled-components';
 import { applesModel } from './model/apples';
 import { orangesModel } from './model/oranges';
 
-export const ExamplesPage = styled(({ className }: ComponentPropsWithClassName) => {
+export const ExamplesOperatorsPage = styled(({ className }: ComponentPropsWithClassName) => {
     const oranges = useStore(orangesModel.stores.$oranges);
     const apples = useStore(applesModel.stores.$apples);
 
