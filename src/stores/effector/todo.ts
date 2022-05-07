@@ -1,19 +1,22 @@
-import { combine, createEffect, createEvent, createStore } from 'effector';
+import { combine, createEffect, createEvent, createStore } from 'effector-logger';
 import { todoApi } from 'shared/api';
 import { Filter } from 'shared/constants';
 
-export const $todos = createStore<app.Todo[]>([]);
-export const $todosLoaded = createStore(false);
+export const $todos = createStore<app.Todo[]>([], { name: '$todos' });
+export const $todosLoaded = createStore(false, { name: '$todosLoaded' });
 
-const $filter = createStore(Filter.all);
+const $filter = createStore(Filter.all, { name: '$filter' });
 
-export const getAllTodosFx = createEffect(todoApi.getAllTodos);
+export const getAllTodosFx = createEffect<void, Awaited<ReturnType<typeof todoApi.getAllTodos>>>(
+    'getAllTodosFx'
+).use(todoApi.getAllTodos);
+
 export const createTodoFx = createEffect(todoApi.createTodo);
 export const updateTodoFx = createEffect(todoApi.updateTodo);
 export const deleteTodoFx = createEffect(todoApi.deleteTodo);
 
-export const clearAllCompleted = createEvent();
-export const filterBy = createEvent<Filter>();
+export const clearAllCompleted = createEvent('clearAllCompleted');
+export const filterBy = createEvent<Filter>('filterBy');
 
 export const $isLoading = combine(
     getAllTodosFx.pending,
