@@ -1,3 +1,3 @@
-export type UseTodoListResponse = {
+export type UseTodoList = () => {
     todos: app.Todo[];
 };

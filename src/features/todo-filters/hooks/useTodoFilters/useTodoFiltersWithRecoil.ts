@@ -2,10 +2,10 @@ import { recoilStore } from 'stores/recoil';
 import { UseTodoFiltersResponse } from './types';
 
 export const useTodoFiltersWithRecoil = (): UseTodoFiltersResponse => {
-    const actions = recoilStore.todo.useTodoActions();
+    const { filterBy, clearAllCompleted } = recoilStore.todo.useTodoActions();
 
     return {
-        filterBy: actions.filterBy,
-        clearAllCompleted: actions.clearAllCompleted,
+        filterBy,
+        clearAllCompleted,
     };
 };

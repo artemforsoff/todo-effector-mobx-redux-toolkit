@@ -1,9 +1,9 @@
 import { useStore } from 'effector-react';
 import { useEffect } from 'react';
 import { $filteredTodos, $todosLoaded, getAllTodosFx } from 'stores/effector/todo';
-import { UseTodoListResponse } from './types';
+import { UseTodoList } from './types';
 
-export const useTodoListWithEffector = (): UseTodoListResponse => {
+export const useTodoListWithEffector: UseTodoList = () => {
     const todos = useStore($filteredTodos);
     const todosLoaded = useStore($todosLoaded);
 

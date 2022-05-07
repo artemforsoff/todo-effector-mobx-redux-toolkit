@@ -1,5 +1,5 @@
 import { useStore } from 'effector-react';
-import { useRecoilState } from 'recoil';
+import { useRecoilValue } from 'recoil';
 import { ACTIVE_STORE_MANAGER, StoreManager } from 'shared/constants';
 import { $isLoading } from 'stores/effector/todo';
 import { todoStore } from 'stores/mobx';
@@ -10,7 +10,7 @@ export const useIsLoading = () => {
     const isMobxLoading = todoStore.isLoading;
     const isReduxToolkitLoading = useSelector(({ todo }) => todo.isLoading);
     const isEffectorLoading = useStore($isLoading);
-    const [isRecoilLoading] = useRecoilState(recoilStore.todo.atoms.isLoadingState);
+    const isRecoilLoading = useRecoilValue(recoilStore.todo.atoms.isLoadingState);
 
     const loaders: Record<StoreManager, boolean> = {
         mobx: isMobxLoading,

@@ -1,11 +1,11 @@
 import { ACTIVE_STORE_MANAGER, StoreManager } from 'shared/constants';
-import { UseTodoListResponse } from './types';
+import { UseTodoList } from './types';
 import { useTodoListWithEffector } from './useTodoListWithEffector';
 import { useTodoListWithMobx } from './useTodoListWithMobx';
 import { useTodoListWithReduxToolkit } from './useTodoListWithReduxToolkit';
 import { useTodoListWithRecoil } from './useTodoListWithRecoil';
 
-const hooks: Record<StoreManager, () => UseTodoListResponse> = {
+const hooks: Record<StoreManager, UseTodoList> = {
     effector: useTodoListWithEffector,
     mobx: useTodoListWithMobx,
     'redux-toolkit': useTodoListWithReduxToolkit,
