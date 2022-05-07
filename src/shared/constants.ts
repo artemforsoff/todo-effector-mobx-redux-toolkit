@@ -18,3 +18,6 @@ const searchParamsStoreManager = new URLSearchParams(window.location.search).get
 ) as Nullable<StoreManager>;
 
 export const ACTIVE_STORE_MANAGER: StoreManager = searchParamsStoreManager || StoreManager.reduxToolkit;
+
+export const orange = '&#127818;';
+export const apple = '&#127822;';
