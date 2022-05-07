@@ -30,7 +30,7 @@ export const TodoFilters = styled(
                     ))}
                 </fieldset>
 
-                <button type="button" className="btn-clear-completed" onClick={clearAllCompleted}>
+                <button type="button" className="btn-clear-completed" onClick={() => clearAllCompleted()}>
                     Clear completed
                 </button>
             </form>

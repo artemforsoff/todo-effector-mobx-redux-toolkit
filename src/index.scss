@@ -35,6 +35,10 @@ select {
     font-size: inherit;
 }
 
+ul, ol {
+    list-style: none;
+}
+
 .visibility-hidden {
     height: 0;
     width: 0;

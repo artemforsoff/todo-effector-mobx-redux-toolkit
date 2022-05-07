@@ -17,11 +17,17 @@ export const App = () => {
                 <Route
                     index
                     element={
-                        <>
-                            <Link to="/todo">todo</Link>
-                            <Link to="/examples/operators">example: operators</Link>
-                            <Link to="/examples/counter">example: counter</Link>
-                        </>
+                        <ul style={{ display: 'flex', gap: 20, padding: 20 }}>
+                            <li>
+                                <Link to="/todo">todo</Link>
+                            </li>
+                            <li>
+                                <Link to="/examples/operators">example: operators</Link>
+                            </li>
+                            <li>
+                                <Link to="/examples/counter">example: counter</Link>
+                            </li>
+                        </ul>
                     }
                 />
                 <Route path="todo" element={<TodoPage />} />
