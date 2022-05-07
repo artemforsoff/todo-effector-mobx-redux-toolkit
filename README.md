@@ -4,7 +4,7 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 ## Hosting
 
-This application hosted [here](https://artemforsoff.github.io/todo-effector-mobx-redux-toolkit-recoil/build/).
+This application hosted [here](https://artemforsoff.github.io/todo-effector-mobx-redux-toolkit-recoil/).
 
 ## Available Scripts
 
