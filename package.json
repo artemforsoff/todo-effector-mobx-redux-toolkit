@@ -1,7 +1,6 @@
 {
   "name": "todo-effector-mobx-redux-toolkit-recoil",
   "version": "0.1.0",
-  "homepage": "https://artemforsoff.github.io/todo-effector-mobx-redux-toolkit-recoil",
   "private": true,
   "dependencies": {
     "@reduxjs/toolkit": "^1.8.1",
@@ -34,8 +33,6 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "predeploy": "npm run build",
-    "deploy": "gh-pages -d build",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
