@@ -15,7 +15,9 @@ export const IndexPage = styled(({ className }: ComponentPropsWithClassName) => 
         </li>
     </ul>
 ))`
-    display: flex;
-    gap: 20;
     padding: 20px;
+
+    li:not(:last-child) {
+        margin-block-end: 20px;
+    }
 `;
