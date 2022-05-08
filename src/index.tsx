@@ -12,7 +12,7 @@ const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement)
 root.render(
     <RecoilRoot>
         <Provider store={store}>
-            <BrowserRouter>
+            <BrowserRouter basename={process.env.REACT_APP_ROUTER_BASE_NAME}>
                 <App />
             </BrowserRouter>
         </Provider>
