@@ -15,9 +15,7 @@ if (effectorIsUsed) {
     require('effector-logger/inspector');
 }
 
-const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement);
-
-root.render(
+ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
     <RecoilRoot>
         <Provider store={store}>
             <BrowserRouter>
