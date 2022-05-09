@@ -7,13 +7,22 @@ export const $todosLoaded = createStore(false, { name: '$todosLoaded' });
 
 const $filter = createStore(Filter.all, { name: '$filter' });
 
-export const getAllTodosFx = createEffect<void, Awaited<ReturnType<typeof todoApi.getAllTodos>>>(
-    'getAllTodosFx'
-).use(todoApi.getAllTodos);
-
-export const createTodoFx = createEffect(todoApi.createTodo);
-export const updateTodoFx = createEffect(todoApi.updateTodo);
-export const deleteTodoFx = createEffect(todoApi.deleteTodo);
+export const getAllTodosFx = createEffect({
+    name: 'getAllTodosFx',
+    handler: todoApi.getAllTodos,
+});
+export const createTodoFx = createEffect({
+    name: 'createTodoFx',
+    handler: todoApi.createTodo,
+});
+export const updateTodoFx = createEffect({
+    name: 'updateTodoFx',
+    handler: todoApi.updateTodo,
+});
+export const deleteTodoFx = createEffect({
+    name: 'deleteTodoFx',
+    handler: todoApi.deleteTodo,
+});
 
 export const clearAllCompleted = createEvent('clearAllCompleted');
 export const filterBy = createEvent<Filter>('filterBy');
