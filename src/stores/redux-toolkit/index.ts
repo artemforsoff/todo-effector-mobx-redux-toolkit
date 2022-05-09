@@ -6,11 +6,11 @@ import {
     useSelector as useReduxSelector,
 } from 'react-redux';
 import { todoReducer } from './todo';
-import { ACTIVE_STORE_MANAGER, StoreManager } from 'shared/constants';
+import { ACTIVE_STATE_MANAGER, StateManager } from 'shared/constants';
 
 const middlewares: Middleware[] = [];
 
-if (ACTIVE_STORE_MANAGER === StoreManager.reduxToolkit) {
+if (ACTIVE_STATE_MANAGER === StateManager.reduxToolkit) {
     middlewares.push(logger);
 }
 

@@ -5,11 +5,11 @@ import { Provider } from 'react-redux';
 import { App } from './App';
 import { store } from 'stores/redux-toolkit';
 import { RecoilRoot } from 'recoil';
-import { ACTIVE_STORE_MANAGER, StoreManager } from 'shared/constants';
+import { ACTIVE_STATE_MANAGER, StateManager } from 'shared/constants';
 import { DebugObserver } from 'stores/recoil/debug-observer';
 
-const recoilIsUsed = ACTIVE_STORE_MANAGER === StoreManager.recoil;
-const effectorIsUsed = ACTIVE_STORE_MANAGER === StoreManager.effector;
+const recoilIsUsed = ACTIVE_STATE_MANAGER === StateManager.recoil;
+const effectorIsUsed = ACTIVE_STATE_MANAGER === StateManager.effector;
 
 if (effectorIsUsed) {
     require('effector-logger/inspector');

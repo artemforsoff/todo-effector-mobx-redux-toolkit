@@ -6,18 +6,18 @@ export enum Filter {
     completed = 'Completed',
 }
 
-export enum StoreManager {
+export enum StateManager {
     effector = 'effector',
     mobx = 'mobx',
     reduxToolkit = 'redux-toolkit',
     recoil = 'recoil',
 }
 
-const searchParamsStoreManager = new URLSearchParams(window.location.search).get(
-    'ACTIVE_STORE_MANAGER'
-) as Nullable<StoreManager>;
+const searchParamsStateManager = new URLSearchParams(window.location.search).get(
+    'ACTIVE_STATE_MANAGER'
+) as Nullable<StateManager>;
 
-export const ACTIVE_STORE_MANAGER: StoreManager = searchParamsStoreManager || StoreManager.effector;
+export const ACTIVE_STATE_MANAGER: StateManager = searchParamsStateManager || StateManager.effector;
 
 export const orange = '&#127818;';
 export const apple = '&#127822;';

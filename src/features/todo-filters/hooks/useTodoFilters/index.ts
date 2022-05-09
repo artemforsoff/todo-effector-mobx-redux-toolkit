@@ -1,13 +1,13 @@
 import { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
-import { ACTIVE_STORE_MANAGER, Filter, StoreManager } from 'shared/constants';
+import { ACTIVE_STATE_MANAGER, Filter, StateManager } from 'shared/constants';
 import { UseTodoFiltersResponse } from './types';
 import { useTodoFiltersWithEffector } from './useTodoFiltersWithEffector';
 import { useTodoFiltersWithMobx } from './useTodoFiltersWithMobx';
 import { useTodoFiltersWithReduxToolkit } from './useTodoFiltersWithReduxToolkit';
 import { useTodoFiltersWithRecoil } from './useTodoFiltersWithRecoil';
 
-const hooks: Record<StoreManager, () => UseTodoFiltersResponse> = {
+const hooks: Record<StateManager, () => UseTodoFiltersResponse> = {
     effector: useTodoFiltersWithEffector,
     mobx: useTodoFiltersWithMobx,
     'redux-toolkit': useTodoFiltersWithReduxToolkit,
@@ -21,7 +21,7 @@ export const useTodoFilters = () => {
         },
     });
 
-    const { clearAllCompleted, filterBy } = hooks[ACTIVE_STORE_MANAGER]();
+    const { clearAllCompleted, filterBy } = hooks[ACTIVE_STATE_MANAGER]();
 
     const { watch } = form;
 

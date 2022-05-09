@@ -1,10 +1,10 @@
 import * as effectorLogger from 'effector-logger';
 import * as effector from 'effector';
 import { todoApi } from 'shared/api';
-import { ACTIVE_STORE_MANAGER, Filter, StoreManager } from 'shared/constants';
+import { ACTIVE_STATE_MANAGER, Filter, StateManager } from 'shared/constants';
 
 const { createEffect, createStore, createEvent, combine } =
-    ACTIVE_STORE_MANAGER === StoreManager.effector ? effectorLogger : effector;
+    ACTIVE_STATE_MANAGER === StateManager.effector ? effectorLogger : effector;
 
 // stores
 export const $todos = createStore<app.Todo[]>([], { name: '$todos' });

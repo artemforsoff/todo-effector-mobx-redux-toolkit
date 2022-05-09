@@ -1,10 +1,11 @@
-# Todo application that uses and demonstrates the difference between state managers
+# Todo app
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Application that uses and demonstrates the difference between state managers: [effector](https://effector.dev/), [redux-toolkit](https://redux-toolkit.js.org/), [mobx](https://mobx.js.org/README.html) and [recoil](https://recoiljs.org/).
 
 ## Hosting
 
-This application hosted [here](https://todo-effector-mobx-redux-toolkit-recoil.netlify.app/).
+This application is hosted [here](https://todo-effector-mobx-redux-toolkit-recoil.netlify.app/todo) by Netlify.
+If you want to change the active state manager, you can set the url get parameter `ACTIVE STATE MANAGER` to `effector`, `redux-toolkit`, `mobx`, or `recoil`.
 
 ## Available Scripts
 

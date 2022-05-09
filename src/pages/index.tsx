@@ -8,10 +8,10 @@ export const IndexPage = styled(({ className }: ComponentPropsWithClassName) => 
             <Link to="/todo">todo</Link>
         </li>
         <li>
-            <Link to="/examples/operators">example: operators</Link>
+            <Link to="/examples/operators">example: effector's operators</Link>
         </li>
         <li>
-            <Link to="/examples/counter">example: counter</Link>
+            <Link to="/examples/counter">example: counter with effector</Link>
         </li>
     </ul>
 ))`

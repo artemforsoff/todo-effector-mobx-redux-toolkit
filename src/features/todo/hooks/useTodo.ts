@@ -1,13 +1,13 @@
 import { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
-import { ACTIVE_STORE_MANAGER, StoreManager } from 'shared/constants';
+import { ACTIVE_STATE_MANAGER, StateManager } from 'shared/constants';
 import { UseTodo } from './types';
 import { useTodoWithEffector } from './useTodoWithEffector';
 import { useTodoWithMobx } from './useTodoWithMobx';
 import { useTodoWithReduxToolkit } from './useTodoWithReduxToolkit';
 import { useTodoWithRecoil } from './useTodoWithRecoil';
 
-const hooks: Record<StoreManager, UseTodo> = {
+const hooks: Record<StateManager, UseTodo> = {
     effector: useTodoWithEffector,
     mobx: useTodoWithMobx,
     'redux-toolkit': useTodoWithReduxToolkit,
@@ -15,7 +15,7 @@ const hooks: Record<StoreManager, UseTodo> = {
 };
 
 export const useTodo = (todo: app.Todo) => {
-    const { handleChangeСompleted, handleDelete, updateTodo } = hooks[ACTIVE_STORE_MANAGER](todo);
+    const { handleChangeСompleted, handleDelete, updateTodo } = hooks[ACTIVE_STATE_MANAGER](todo);
 
     const [isOpenForm, setIsOpenForm] = useState(false);
 

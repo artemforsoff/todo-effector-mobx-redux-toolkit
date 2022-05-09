@@ -1,6 +1,6 @@
 import { useForm } from 'react-hook-form';
 import { todoApi } from 'shared/api';
-import { ACTIVE_STORE_MANAGER, StoreManager } from 'shared/constants';
+import { ACTIVE_STATE_MANAGER, StateManager } from 'shared/constants';
 import { createTodoFx } from 'stores/effector/todo';
 import { todoStore } from 'stores/mobx/todo';
 import { recoilStore } from 'stores/recoil';
@@ -24,17 +24,17 @@ export const useTodoCreationForm = () => {
             userId: 1,
         };
 
-        switch (ACTIVE_STORE_MANAGER) {
-            case StoreManager.effector:
+        switch (ACTIVE_STATE_MANAGER) {
+            case StateManager.effector:
                 await createTodoFx(todo);
                 break;
-            case StoreManager.mobx:
+            case StateManager.mobx:
                 await todoStore.fetchCreateTodo(todo);
                 break;
-            case StoreManager.reduxToolkit:
+            case StateManager.reduxToolkit:
                 await dispatch(fetchCreateTodo(todo));
                 break;
-            case StoreManager.recoil:
+            case StateManager.recoil:
                 await actions.fetchCreateTodo(todo);
                 break;
             default:
