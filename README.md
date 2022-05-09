@@ -1,7 +1,7 @@
 # ☄️ todo app
 
 [![Netlify Status](https://api.netlify.com/api/v1/badges/28ea953e-cc35-4496-bd8d-4bcf767a0883/deploy-status)](https://app.netlify.com/sites/todo-effector-mobx-redux-toolkit-recoil/deploys)
-![Typed with TypeScript](https://flat.badgen.net/badge/icon/Typed?icon=typescript&label&labelColor=blue&color=555555)
+![ts](https://badgen.net/badge/-/TypeScript?icon=typescript&label&labelColor=blue&color=555555)
 
 Application that uses and demonstrates the difference between state managers: [effector](https://effector.dev/), [redux-toolkit](https://redux-toolkit.js.org/), [mobx](https://mobx.js.org/README.html) and [recoil](https://recoiljs.org/).
 
