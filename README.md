@@ -5,7 +5,7 @@ Application that uses and demonstrates the difference between state managers: [e
 ## Hosting
 
 This application is hosted [here](https://todo-effector-mobx-redux-toolkit-recoil.netlify.app/todo) by Netlify.
-If you want to change the active state manager, you can set the url get parameter `ACTIVE STATE MANAGER` to `effector`, `redux-toolkit`, `mobx`, or `recoil`.
+If you want to change the active state manager, you can set the url get parameter `ACTIVE_STATE_MANAGER` to `effector`, `redux-toolkit`, `mobx`, or `recoil`.
 
 ## Available Scripts
 
