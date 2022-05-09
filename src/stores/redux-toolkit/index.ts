@@ -1,17 +1,26 @@
-import { configureStore } from '@reduxjs/toolkit';
+import { configureStore, Middleware } from '@reduxjs/toolkit';
+import logger from 'redux-logger';
 import {
     TypedUseSelectorHook,
     useDispatch as useReduxDispatch,
     useSelector as useReduxSelector,
 } from 'react-redux';
 import { todoReducer } from './todo';
+import { ACTIVE_STORE_MANAGER, StoreManager } from 'shared/constants';
+
+const middlewares: Middleware[] = [];
+
+if (ACTIVE_STORE_MANAGER === StoreManager.reduxToolkit) {
+    middlewares.push(logger);
+}
 
 export const store = configureStore({
     reducer: { todo: todoReducer },
-    middleware: (getDefaultMiddleware) =>
-        getDefaultMiddleware({
+    middleware: (getDefaultMiddleware) => {
+        return getDefaultMiddleware({
             serializableCheck: false,
-        }),
+        }).concat(middlewares);
+    },
 });
 
 export type RootState = ReturnType<typeof store.getState>;

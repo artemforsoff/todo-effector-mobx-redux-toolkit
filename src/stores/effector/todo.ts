@@ -1,12 +1,17 @@
-import { combine, createEffect, createEvent, createStore } from 'effector-logger';
+import * as effectorLogger from 'effector-logger';
+import * as effector from 'effector';
 import { todoApi } from 'shared/api';
-import { Filter } from 'shared/constants';
+import { ACTIVE_STORE_MANAGER, Filter, StoreManager } from 'shared/constants';
 
+const { createEffect, createStore, createEvent, combine } =
+    ACTIVE_STORE_MANAGER === StoreManager.effector ? effectorLogger : effector;
+
+// stores
 export const $todos = createStore<app.Todo[]>([], { name: '$todos' });
 export const $todosLoaded = createStore(false, { name: '$todosLoaded' });
-
 const $filter = createStore(Filter.all, { name: '$filter' });
 
+// effects
 export const getAllTodosFx = createEffect({
     name: 'getAllTodosFx',
     handler: todoApi.getAllTodos,
@@ -24,6 +29,7 @@ export const deleteTodoFx = createEffect({
     handler: todoApi.deleteTodo,
 });
 
+// events
 export const clearAllCompleted = createEvent('clearAllCompleted');
 export const filterBy = createEvent<Filter>('filterBy');
 
@@ -35,6 +41,7 @@ export const $isLoading = combine(
     (...flags) => flags.some(Boolean)
 );
 
+// binding
 $todos
     .on(getAllTodosFx.doneData, (_, { data }) => {
         return data;
