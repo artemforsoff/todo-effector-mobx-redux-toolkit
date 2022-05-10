@@ -43,8 +43,6 @@ export const useTodoActions = () => {
 
     const setFilter = useSetRecoilState(filterState);
 
-    const filterBy = (filter: Filter) => setFilter(filter);
-
     const clearAllCompleted = () => {
         setTodos(todos.filter(({ completed }) => !completed));
     };
@@ -109,7 +107,7 @@ export const useTodoActions = () => {
     };
 
     return {
-        filterBy,
+        filterBy: setFilter,
         clearAllCompleted,
         fetchCreateTodo,
         fetchUpdateTodo,

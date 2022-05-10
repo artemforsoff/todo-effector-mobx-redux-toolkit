@@ -11,23 +11,22 @@ export const $todos = createStore<app.Todo[]>([], { name: '$todos' });
 export const $todosLoaded = createStore(false, { name: '$todosLoaded' });
 const $filter = createStore(Filter.all, { name: '$filter' });
 
+export const $filteredTodos = combine($todos, $filter, (todos, filter) => {
+    if (filter === Filter.all) return todos;
+
+    return todos.filter(({ completed }) => {
+        return filter === Filter.active ? !completed : completed;
+    });
+});
+
 // effects
-export const getAllTodosFx = createEffect({
-    name: 'getAllTodosFx',
-    handler: todoApi.getAllTodos,
-});
-export const createTodoFx = createEffect({
-    name: 'createTodoFx',
-    handler: todoApi.createTodo,
-});
-export const updateTodoFx = createEffect({
-    name: 'updateTodoFx',
-    handler: todoApi.updateTodo,
-});
-export const deleteTodoFx = createEffect({
-    name: 'deleteTodoFx',
-    handler: todoApi.deleteTodo,
-});
+export const getAllTodosFx = createEffect({ name: 'getAllTodosFx', handler: todoApi.getAllTodos });
+
+export const createTodoFx = createEffect({ name: 'createTodoFx', handler: todoApi.createTodo });
+
+export const updateTodoFx = createEffect({ name: 'updateTodoFx', handler: todoApi.updateTodo });
+
+export const deleteTodoFx = createEffect({ name: 'deleteTodoFx', handler: todoApi.deleteTodo });
 
 // events
 export const clearAllCompleted = createEvent('clearAllCompleted');
@@ -65,13 +64,5 @@ $todos
     });
 
 $filter.on(filterBy, (_, filter) => filter);
-
-export const $filteredTodos = combine($todos, $filter, (todos, filter) => {
-    if (filter === Filter.all) return todos;
-
-    return todos.filter(({ completed }) => {
-        return filter === Filter.active ? !completed : completed;
-    });
-});
 
 $todosLoaded.on(getAllTodosFx.done, () => true);
