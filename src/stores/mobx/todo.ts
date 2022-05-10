@@ -12,6 +12,14 @@ class Todo {
         makeAutoObservable(this);
     }
 
+    get filteredTodos() {
+        if (this.filter === Filter.all) return this.entities;
+
+        return this.entities.filter(({ completed }) => {
+            return this.filter === Filter.active ? !completed : completed;
+        });
+    }
+
     fetchAllTodos = async () => {
         this.isLoading = true;
 
@@ -74,14 +82,6 @@ class Todo {
     filterBy = (filter: Filter) => {
         this.filter = filter;
     };
-
-    get filteredTodos() {
-        if (this.filter === Filter.all) return this.entities;
-
-        return this.entities.filter(({ completed }) => {
-            return this.filter === Filter.active ? !completed : completed;
-        });
-    }
 }
 
 export const todoStore = new Todo();
