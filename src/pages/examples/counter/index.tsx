@@ -1,21 +1,24 @@
+import { useStore } from 'effector-react';
 import { ComponentPropsWithClassName } from 'shared/utility-types';
 import styled from 'styled-components';
+import { $count, decrement, getRandomNumberFx, increment } from './model';
 
 export const ExampleCounterPage = styled(({ className }: ComponentPropsWithClassName) => {
-    const count = 0;
-    const isLoadingRandomNumber = false;
+    const isLoadingRandomNumber = useStore(getRandomNumberFx.pending);
+
+    const count = useStore($count);
 
     return (
         <div className={className}>
             {isLoadingRandomNumber && <p>...loading random number</p>}
 
             <main>
-                <button>-</button>
+                <button onClick={() => decrement()}>-</button>
                 <output>{count}</output>
-                <button>+</button>
+                <button onClick={() => increment()}>+</button>
             </main>
 
-            <button>fetch random number</button>
+            <button onClick={() => getRandomNumberFx()}>fetch random number</button>
         </div>
     );
 })`
