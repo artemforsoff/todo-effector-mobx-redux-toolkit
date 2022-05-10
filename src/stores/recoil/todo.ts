@@ -39,6 +39,7 @@ export const filteredTodosState = selector({
 export const useTodoActions = () => {
     const setIsLoading = useSetRecoilState(isLoadingState);
     const [todos, setTodos] = useRecoilState(todosState);
+    const setTodosLoaded = useSetRecoilState(todosLoadedState);
 
     const setFilter = useSetRecoilState(filterState);
 
@@ -46,6 +47,17 @@ export const useTodoActions = () => {
 
     const clearAllCompleted = () => {
         setTodos(todos.filter(({ completed }) => !completed));
+    };
+
+    const fetchTodos = async () => {
+        setIsLoading(true);
+        try {
+            const { data } = await todoApi.getAllTodos();
+            setTodosLoaded(true);
+            setTodos(data);
+        } finally {
+            setIsLoading(false);
+        }
     };
 
     const fetchCreateTodo = async (payload: Parameters<typeof todoApi.createTodo>['0']) => {
@@ -101,6 +113,7 @@ export const useTodoActions = () => {
         fetchCreateTodo,
         fetchUpdateTodo,
         fetchDeleteTodo,
+        fetchTodos,
     };
 };
 

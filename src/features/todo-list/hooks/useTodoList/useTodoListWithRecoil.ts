@@ -1,29 +1,19 @@
 import { useEffect } from 'react';
-import { useSetRecoilState, useRecoilValue, useRecoilState } from 'recoil';
-import { todoApi } from 'shared/api';
+import { useRecoilValue } from 'recoil';
 import { recoilStore } from 'stores/recoil';
 import { UseTodoList } from './types';
 
 export const useTodoListWithRecoil: UseTodoList = () => {
-    const setTodos = useSetRecoilState(recoilStore.todo.atoms.todosState);
+    const { fetchTodos } = recoilStore.todo.useTodoActions();
+
     const filteredTodosState = useRecoilValue(recoilStore.todo.selectors.filteredTodosState);
-    const [todosLoaded, setTodosLoaded] = useRecoilState(recoilStore.todo.atoms.todosLoadedState);
-    const setIsLoading = useSetRecoilState(recoilStore.todo.atoms.isLoadingState);
+    const todosLoaded = useRecoilValue(recoilStore.todo.atoms.todosLoadedState);
 
     useEffect(() => {
         if (!todosLoaded) {
-            (async () => {
-                setIsLoading(true);
-                try {
-                    const { data } = await todoApi.getAllTodos();
-                    setTodosLoaded(true);
-                    setTodos(data);
-                } finally {
-                    setIsLoading(false);
-                }
-            })();
+            fetchTodos();
         }
-    }, [setIsLoading, setTodos, setTodosLoaded, todosLoaded]);
+    }, [fetchTodos, todosLoaded]);
 
     return {
         todos: filteredTodosState,
