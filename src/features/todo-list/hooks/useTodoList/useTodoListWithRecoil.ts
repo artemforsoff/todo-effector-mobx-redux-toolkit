@@ -6,7 +6,7 @@ import { UseTodoList } from './types';
 export const useTodoListWithRecoil: UseTodoList = () => {
     const { fetchTodos } = recoilStore.todo.useTodoActions();
 
-    const filteredTodosState = useRecoilValue(recoilStore.todo.selectors.filteredTodosState);
+    const todos = useRecoilValue(recoilStore.todo.selectors.filteredTodosState);
     const todosLoaded = useRecoilValue(recoilStore.todo.atoms.todosLoadedState);
 
     useEffect(() => {
@@ -16,6 +16,6 @@ export const useTodoListWithRecoil: UseTodoList = () => {
     }, [fetchTodos, todosLoaded]);
 
     return {
-        todos: filteredTodosState,
+        todos,
     };
 };

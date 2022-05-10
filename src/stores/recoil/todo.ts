@@ -52,9 +52,10 @@ export const useTodoActions = () => {
     const fetchTodos = async () => {
         setIsLoading(true);
         try {
-            const { data } = await todoApi.getAllTodos();
+            const response = await todoApi.getAllTodos();
             setTodosLoaded(true);
-            setTodos(data);
+            setTodos(response.data);
+            return response;
         } finally {
             setIsLoading(false);
         }
